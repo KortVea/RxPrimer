@@ -77,10 +77,9 @@ public class Part1
     
     #region Ignore
 
-    private object ____ = "Please fill in the blank.";
-    private int __ = 100;
-    private string ___ = "Please fill in the blank.";
-    
+    private static object ____ = "Please fill in the blank.";
+    private static int __ = 100;
+    private static string ___ = "Please fill in the blank.";
     
     #endregion
 }
