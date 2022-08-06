@@ -9,7 +9,7 @@ public class Part2
         var sut = Observable.Range(1, 10);
         sut.Subscribe(_ => count ++);
         
-        Assert.Equal(10, count);
+        Assert.Equal(__, count);
     }
     
     [Fact]
@@ -22,4 +22,14 @@ public class Part2
         // ?
         Assert.Equal(10, count);
     }
+    
+    
+    
+    #region Ignore
+
+    private static object ____ = "Please fill in the blank.";
+    private static int __ = 100;
+    private static string ___ = "Please fill in the blank.";
+    
+    #endregion
 }
