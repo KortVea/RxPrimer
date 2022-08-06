@@ -1,6 +1,4 @@
-﻿using System.Reactive;
-
-namespace RxPrimer;
+﻿namespace RxPrimer;
 
 public class Part1
 {
