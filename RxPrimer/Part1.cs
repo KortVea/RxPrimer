@@ -1,4 +1,6 @@
-﻿namespace RxPrimer;
+﻿using System.Reactive;
+
+namespace RxPrimer;
 
 public class Part1
 {
@@ -18,32 +20,69 @@ public class Part1
     }
 
     [Fact]
+    public void it_is_a_stream()
+    {
+        var count = 0;
+        var sut = new Subject<int>();
+        sut.Subscribe(_ => count++);
+        
+        Assert.Equal(__, count);
+        sut.OnNext(3);
+        sut.OnNext(5);
+        Assert.Equal(__, count);
+    }
+
+    [Fact]
     public void observable_creation()
     {
         var foo = "foo";
         var sut = 
             Observable
-                .Create<string>(o =>
-                {
-                    o.OnNext("baz");
-                    o.OnCompleted();
-                    
-                    return Disposable.Create(() =>
+                .Create<string>(
+                    o =>
                     {
-                        foo = "bar";
+                        o.OnNext("baz");
+                        o.OnCompleted();
+                        
+                        return Disposable.Create(() =>
+                        {
+                            foo = "bar";
+                        });
                     });
-                });
         Assert.Equal(___, foo);
         sut.Subscribe(i => Assert.Equal(___, i));
         Assert.Equal(___, foo);
     }
 
+    [Fact]
+    public void unsubscribe_disposes_it()
+    {
+        var test = "";
+        var sut =
+            Observable
+                .Create<string>(
+                    o =>
+                    {
+                        o.OnNext("first");
+                        return () =>
+                        {
+                            test = "disposed";
+                        };
+                    });
+        sut.Subscribe();
+        // ?
+        Assert.Equal("disposed", test);
+    }
+    
+    
+    
+    
     #region Ignore
 
-    private object _ = "Please fill in the blank.";
+    private object ____ = "Please fill in the blank.";
     private int __ = 100;
     private string ___ = "Please fill in the blank.";
     
-
+    
     #endregion
 }
