@@ -75,7 +75,7 @@ public class Part1
                         };
                     });
         sut.Subscribe();
-        // ?
+        // how to dispose a subscription?
         Assert.Equal("disposed", test);
     }
     
