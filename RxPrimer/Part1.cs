@@ -11,6 +11,13 @@ public class Part1
     }
 
     [Fact]
+    public void behavior_subject_behaviour()
+    {
+        var sut = new BehaviorSubject<string>("initial");
+        sut.Subscribe(i => Assert.Equal(___, i));
+    }
+
+    [Fact]
     public void simple_observable()
     {
         var sut = Observable.Return("wassup");
