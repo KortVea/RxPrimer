@@ -6,22 +6,22 @@ public class Part1
     public void subject_is_both_observable_and_observer()
     {
         var sut = new Subject<int>();
-        sut.Subscribe(i => Assert.Equal(__, i));
+        sut.Subscribe(i => Assert.Equal(10, i));
         sut.OnNext(10);
     }
 
     [Fact]
-    public void behavior_subject_behaviour()
+    public void behavior_subject_is_cache_1()
     {
         var sut = new BehaviorSubject<string>("initial");
-        sut.Subscribe(i => Assert.Equal(___, i));
+        sut.Subscribe(i => Assert.Equal("initial", i));
     }
 
     [Fact]
     public void simple_observable()
     {
         var sut = Observable.Return("wassup");
-        sut.Subscribe(i => Assert.Equal(___, i));
+        sut.Subscribe(i => Assert.Equal("wassup", i));
     }
 
     [Fact]
@@ -31,10 +31,10 @@ public class Part1
         var sut = new Subject<int>();
         sut.Subscribe(_ => count++);
         
-        Assert.Equal(__, count);
+        Assert.Equal(0, count);
         sut.OnNext(3);
         sut.OnNext(5);
-        Assert.Equal(__, count);
+        Assert.Equal(2, count);
     }
 
     [Fact]
@@ -54,13 +54,13 @@ public class Part1
                             foo = "bar";
                         });
                     });
-        Assert.Equal(___, foo);
-        sut.Subscribe(i => Assert.Equal(___, i));
-        Assert.Equal(___, foo);
+        Assert.Equal("foo", foo);
+        sut.Subscribe(i => Assert.Equal("baz", i));
+        Assert.Equal("bar", foo);
     }
 
     [Fact]
-    public void unsubscribe_disposes_it()
+    public void unsubscribe_disposes()
     {
         var test = "";
         var sut =
@@ -74,8 +74,8 @@ public class Part1
                             test = "disposed";
                         };
                     });
-        sut.Subscribe();
-        // how to dispose a subscription?
+        var sub = sut.Subscribe();
+        sub.Dispose();
         Assert.Equal("disposed", test);
     }
     

@@ -9,17 +9,17 @@ public class Part4
         var sut = Observable.Range(1, 10);
         sut.Subscribe(_ => count ++);
         
-        Assert.Equal(__, count);
+        Assert.Equal(10, count);
     }
     
     [Fact]
-    public void range_2()
+    public void range_with_explicit_scheduler()
     {
         var count = 0;
         var scheduler = new TestScheduler();
         var sut = Observable.Range(1, 10, scheduler);
         sut.Subscribe(_ => count ++);
-        // what does scheduler do here? 
+        scheduler.AdvanceBy(1);
         Assert.Equal(10, count);
     }
     
@@ -29,7 +29,7 @@ public class Part4
         var numbers = Observable.Range(1, 100);
         var results = 
             from x in numbers
-            where x % __ == 0
+            where x % 11 == 0
             select x.ToString();
 
         var strings = results.ToEnumerable().ToArray();

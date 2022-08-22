@@ -27,10 +27,9 @@ public class Part3
 
         sut
             .Do(i => count += 1)
-            .Subscribe(i => Assert.Equal(__, i));
+            .Subscribe(i => Assert.Equal(2, i));
 
-        Assert.Equal(__, count);
-        Assert.Equal(10, count);
+        Assert.Equal(1, count);
     }
 
     [Fact]
@@ -42,8 +41,8 @@ public class Part3
         var count = 0;
         sut
             .Do(_ => count += 1)
-            .Subscribe(i => Assert.Equal(__, i),
-            () => Assert.Equal(__, count));
+            .Subscribe(i => Assert.Equal(10, i),
+            () => Assert.Equal(1, count));
     }
 
     [Fact]
@@ -58,9 +57,9 @@ public class Part3
             .Do(_ => count += 1)
             .Select(i => result += i)
             .Subscribe(i => { },
-                () => Assert.Equal(__, count));
+                () => Assert.Equal(5, count));
         // Scan isn't blocking, why are you seeing what you see?
-        Assert.Equal(___, result);
+        Assert.Equal("01234", result);
     }
     
     

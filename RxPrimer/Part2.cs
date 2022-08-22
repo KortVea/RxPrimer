@@ -5,7 +5,7 @@ namespace RxPrimer;
 public class Part2
 {
     [Fact]
-    public void timer()
+    public void simple_timer()
     {
         var result = string.Empty;
         var scheduler = new TestScheduler();
@@ -13,15 +13,15 @@ public class Part2
         var sut = Observable.Timer(TimeSpan.FromSeconds(1), scheduler);
         sut.Subscribe(i => result += Convert.ToInt32(i).ToString());
         
-        Assert.Equal(___, result);
+        Assert.Equal(string.Empty, result);
         scheduler.AdvanceBy(TimeSpan.FromSeconds(1).Ticks);
-        Assert.Equal(___, result);
+        Assert.Equal("1", result);
         scheduler.AdvanceBy(TimeSpan.FromSeconds(10).Ticks);
-        Assert.Equal(___, result);
+        Assert.Equal("1", result);
     }
 
     [Fact]
-    public void generate()
+    public void generate_is_more_versatile()
     {
         var result = string.Empty;
         var scheduler = new TestScheduler();
@@ -36,15 +36,15 @@ public class Part2
                     scheduler);
         sut.Subscribe(i => result += Convert.ToInt32(i).ToString());
         
-        Assert.Equal(___, result);
+        Assert.Equal(string.Empty, result);
         scheduler.AdvanceBy(TimeSpan.FromSeconds(1).Ticks);
-        Assert.Equal(___, result);
+        Assert.Equal("1", result);
         scheduler.AdvanceBy(TimeSpan.FromSeconds(10).Ticks);
-        Assert.Equal(___, result);
+        Assert.Equal("1", result);
     }
 
     [Fact]
-    public void interval()
+    public void interval_is_another_timer()
     {
         var result = string.Empty;
         var scheduler = new TestScheduler();
@@ -52,11 +52,11 @@ public class Part2
 
         sut.Subscribe(i => result += Convert.ToInt32(i).ToString());
         
-        Assert.Equal(___, result);
+        Assert.Equal(string.Empty, result);
         scheduler.AdvanceBy(TimeSpan.FromSeconds(3).Ticks);
-        Assert.Equal(___, result);
+        Assert.Equal("123", result);
         scheduler.AdvanceBy(TimeSpan.FromSeconds(30).Ticks);
-        Assert.Equal(___, result);
+        Assert.Equal("12345", result);
     }
 
  
